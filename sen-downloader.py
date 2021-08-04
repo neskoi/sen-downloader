@@ -1,12 +1,14 @@
 import json
 import pathlib
 import sys
+import os
 import urllib.request
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
 
+os.environ['MOZ_HEADLESS'] = '1'
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.3'}
 
 def main():
@@ -25,7 +27,7 @@ def main():
     createFolder(directoryPath)
 
     for i in range(1, totalPages):
-        print('Baixando pagina ' + str(i))
+        print(f'Baixando pagina {str(i)} de {totalPages - 1}')
 
         pageSrc = getPageSrc(browser, wait)
 
